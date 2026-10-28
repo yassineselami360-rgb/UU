@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>AdMaster AI Studio</title>
+<link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+<header class="topbar">
+  <a class="brand" href="#"><span class="brand-icon">✦</span><span>AdMaster <b>AI</b></span></a>
+  <div class="top-actions"><span class="status"><i></i> استوديو الإعلانات</span><button id="langBtn" class="ghost">EN / AR</button></div>
+</header>
+<main class="shell">
+  <section class="hero">
+    <div class="eyebrow"><span>✦</span> استوديو إبداعي بالذكاء الاصطناعي</div>
+    <h1>حوّل صورة منتجك إلى<br><span>إعلان يستوقف المشاهد.</span></h1>
+    <p>أنشئ فيديو عموديًا بحركة سينمائية ونصوص إعلانية، ثم صدّره بصيغة MP4. ابدأ بصورة واحدة؛ فالإبداع لا يحتاج إلى طاقم تصوير كامل.</p>
+    <div class="hero-pills"><span>● مونتاج تلقائي</span><span>▣ فيديو 9:16</span><span>↗ تصدير MP4</span></div>
+  </section>
+  <section class="workspace">
+    <div class="form-panel">
+      <div class="section-heading"><div><span class="step">01</span><h2>جهّز إعلانك</h2></div><span class="small-label">نسخة تجريبية</span></div>
+      <form id="adForm">
+        <label class="upload-zone" for="imageInput" id="dropZone">
+          <input id="imageInput" name="image" type="file" accept="image/png,image/jpeg,image/webp" required hidden>
+          <div class="upload-icon">↑</div><strong id="uploadTitle">ارفع صورة المنتج</strong>
+          <span id="uploadDesc">اسحب الصورة هنا أو اضغط للاختيار</span><small>PNG · JPG · WEBP — حتى 100MB</small>
+          <img id="imagePreview" alt="معاينة صورة المنتج" hidden>
+        </label>
+        <label class="field-label" for="productName">اسم المنتج</label>
+        <input id="productName" placeholder="مثال: حقيبة يومية أنيقة">
+        <div class="two-col">
+          <div><label class="field-label" for="duration">مدة الفيديو</label><select id="duration" name="duration"><option value="10">10 ثوانٍ</option><option value="15" selected>15 ثانية</option><option value="20">20 ثانية</option><option value="30">30 ثانية</option></select></div>
+          <div><label class="field-label" for="style">أسلوب الإعلان</label><select id="style"><option>سينمائي فاخر</option><option>سريع وحيوي</option><option>بسيط وأنيق</option><option>عرض المنتج</option></select></div>
+        </div>
+        <label class="field-label" for="headline">العنوان الرئيسي</label>
+        <input id="headline" name="headline" maxlength="70" value="اكتشف الفرق بنفسك">
+        <label class="field-label" for="subline">النص الثانوي</label>
+        <input id="subline" name="subline" maxlength="90" value="تفاصيل تصنع الفرق">
+        <div class="note"><span>✦</span><p>سيتم إنشاء فيديو فعلي من الصورة مع حركة تقريب سينمائية. توليد مشاهد جديدة بالذكاء الاصطناعي يحتاج إلى ربط مزود خارجي.</p></div>
+        <button class="primary" type="submit" id="renderBtn"><span>✦</span> أنشئ الفيديو الآن <span class="arrow">←</span></button>
+        <div class="progress-wrap" id="progressWrap" hidden><div class="progress-top"><span id="progressText">جارٍ تجهيز الإعلان…</span><span id="progressPct">0%</span></div><div class="progress-track"><div id="progressBar"></div></div></div>
+        <p id="errorMsg" class="error" hidden></p>
+      </form>
+    </div>
+    <div class="preview-panel">
+      <div class="section-heading"><div><span class="step">02</span><h2>معاينة الإعلان</h2></div><span class="live-dot">LIVE PREVIEW</span></div>
+      <div class="preview-stage">
+        <div class="phone-frame">
+          <div class="phone-screen" id="phoneScreen">
+            <div class="screen-top"><span>ADMASTER</span><span>⋯</span></div>
+            <div class="product-placeholder" id="productPlaceholder"><div class="sparkle">✦</div><div>منتجك هنا</div><small>ستظهر معاينة الصورة</small></div>
+            <img id="phoneImage" alt="معاينة الإعلان" hidden>
+            <div class="ad-overlay"><span class="ad-tag">اكتشف الآن</span><h3 id="previewHeadline">اكتشف الفرق بنفسك</h3><p id="previewSubline">تفاصيل تصنع الفرق</p><span class="cta">اعرف المزيد ↗</span></div>
+            <div class="screen-bottom"><span>♡　◯　➤</span><span>•••</span></div>
+          </div>
+        </div>
+        <div class="preview-meta"><span><b>9:16</b> عمودي</span><span><b>1080 × 1920</b></span><span><b>MP4</b> تصدير</span></div>
+      </div>
+      <div class="result-card" id="resultCard" hidden>
+        <div class="result-icon">✓</div><div class="result-copy"><strong>إعلانك جاهز</strong><span>تم إنشاء ملف فيديو MP4</span></div>
+        <a id="downloadLink" class="download-btn" href="#">تحميل الفيديو ↓</a>
+      </div>
+      <div class="feature-grid">
+        <div class="feature"><span>◉</span><b>حركة سينمائية</b><small>تقريب تدريجي ناعم</small></div>
+        <div class="feature"><span>▤</span><b>نصوص واضحة</b><small>عنوان وعبارة تسويقية</small></div>
+        <div class="feature"><span>↗</span><b>جاهز للنشر</b><small>صيغة MP4 عمودية</small></div>
+      </div>
+    </div>
+  </section>
+  <footer><span>AdMaster AI Studio</span><span>صُنع لأصحاب الأفكار والمنتجات.</span></footer>
+</main>
+<script src="/static/app.js"></script>
+</body></html>
